@@ -1,0 +1,110 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+.skip-link:focus {
+  left: 16px !important;
+  top: 16px !important;
+  padding: 12px 20px;
+  background: #f5b82e;
+  color: #070f26;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Keyboard focus that is always visible on light and dark surfaces */
+:focus-visible {
+  outline: 3px solid #f5b82e;
+  outline-offset: 3px;
+}
+
+/*
+ * Subtle scroll reveal using CSS scroll-driven animations.
+ * No JavaScript: browsers without support simply show content immediately.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero-in-delay {
+    animation: hero-in 0.7s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Native <details> FAQ styling */
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item .faq-icon {
+  transition: transform 0.2s ease;
+}
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
